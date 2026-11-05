@@ -1,0 +1,46 @@
+[project]
+name = "medical-triage-mlops"
+version = "1.0.0"
+description = "Tech Challenge Fase 3 - NLP medical report urgency triage"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "joblib>=1.4,<2",
+  "numpy>=1.26,<3",
+  "onnx>=1.16,<2",
+  "onnxruntime>=1.19,<2",
+  "pandas>=2.2,<3",
+  "prometheus-client>=0.21,<1",
+  "scikit-learn>=1.5,<2",
+  "skl2onnx>=1.17,<2",
+  "uvicorn[standard]>=0.30,<1",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3,<9",
+  "httpx>=0.27,<1",
+  "ruff>=0.8,<1",
+]
+airflow = [
+  "apache-airflow>=2.10,<3",
+]
+
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/medical_triage"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
